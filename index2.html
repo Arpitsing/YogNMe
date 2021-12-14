@@ -1,0 +1,149 @@
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login / Sign Up Form</title>
+       <script src="./src/login.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="./src/login.css">
+</head>
+
+<body>
+<div class = "container">
+  <img src="imgs/favicon.ico" />
+  
+     <div id="createAccount">
+    <h1>Create Account</h1>
+      <div >
+      <input type="text" id="username" name="username" placeholder="Username" />
+      </div>
+            <div >
+      <input type="text" id="email" name="email" placeholder="E-mail" />
+      </div>
+            <div >
+      <input type="password" id="password" name="password" placeholder="Password" />
+      </div>
+      <input type="submit" id='signUp' name="signup_submit" value="Sign up" />
+                  <p class="form__text">
+                <a class="form__link" href="index.html" id="linkLogin">Already have an account? Sign in</a>
+            </p>
+</div>
+
+</div>
+    <script src="./src/login.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    //yout config code
+      apiKey: "AIzaSyA8QAi9aVbUgJAfrni69Fh446IkIPhFS4E",
+  authDomain: "login-4a171.firebaseapp.com",
+  projectId: "login-4a171",
+  storageBucket: "login-4a171.appspot.com",
+  messagingSenderId: "150871827794",
+  appId: "1:150871827794:web:5f961fa403d0eed191868b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const auth = getAuth();
+  const signUp = document.getElementById('signUp');
+  const login = document.getElementById('login');
+
+signUp.addEventListener('click',(e) => {
+
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+  var username = document.getElementById('username').value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+     // Signed in 
+      const user = userCredential.user;
+        alert('user created');
+      set(ref(database, 'users/' + user.uid),{
+          username: username,
+          email: email
+      })
+
+      alert('user created!');
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      alert(errorMessage);
+    // ..
+    });
+
+});
+
+ login.addEventListener('click',(e)=>{
+   var email = document.getElementById('email1').value;
+   var password = document.getElementById('password1').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+
+        const dt = new Date();
+         update(ref(database, 'users/' + user.uid),{
+          last_login: dt,
+        })
+
+         alert('User loged in!');
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        alert(errorMessage);
+  });
+
+ });
+
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    //bla bla bla
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    //bla bla bla
+  }
+});
+
+logout.addEventListener('click',(e)=>{
+
+   signOut(auth).then(() => {
+     // Sign-out successful.
+     alert('user loged out');
+   }).catch((error) => {
+     // An error happened.
+     const errorCode = error.code;
+     const errorMessage = error.message;
+
+        alert(errorMessage);
+   });
+
+});
+
+</script>
+</body>
+
+</html>

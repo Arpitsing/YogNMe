@@ -1,0 +1,21 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 847.00002 879.99937">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Безымянный_градиент_15);
+      }
+    </style>
+    <radialGradient id="Безымянный_градиент_15" data-name="Безымянный градиент 15" cx="504.0001" cy="523.09631" r="431.82866" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5902c2"/>
+      <stop offset="0.10697" stop-color="#4428ca"/>
+      <stop offset="0.23213" stop-color="#2f4dd1"/>
+      <stop offset="0.36327" stop-color="#1e6cd7"/>
+      <stop offset="0.50002" stop-color="#1184dc"/>
+      <stop offset="0.64481" stop-color="#0795df"/>
+      <stop offset="0.80303" stop-color="#029fe1"/>
+      <stop offset="1" stop-color="#00a2e2"/>
+    </radialGradient>
+  </defs>
+  <title>blob3</title>
+  <path class="cls-1" d="M915.118,412.00839c-59.2647-268.6504-159.7832-311.6494-225.8946-325.9731-64.8037-14.0396-144.123,23.1841-194.0732,91.1929-54.8359,74.6591-90.1758,107.6294-150.9541,136.0713-58.0391,27.1601-180.6533,44.9453-233.4512,159.2324-63.3906,137.2197-22.7978,281.2148,81.3252,372.8564,116.3604,102.4112,332.4815,170.9697,534.2324,63.2842C928.05451,800.986,947.08281,556.91269,915.118,412.00839Z" transform="translate(-80.50009 -83.09663)"/>
+</svg>
